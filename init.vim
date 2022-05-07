@@ -12,14 +12,17 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'jackguo380/vim-lsp-cxx-highlight' "语法高亮
+Plug 'preservim/tagbar'   "类和函数视图
 
-" For vsnip users.
+"For vsnip users.
 " Plug 'hrsh7th/cmp-vsnip'
 " Plug 'hrsh7th/vim-vsnip'
 
 " For luasnip users.
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
+
 
 call plug#end()
 
@@ -296,3 +299,11 @@ lua <<EOF
     capabilities = capabilities
   }
 EOF
+
+"vim-lsp-cxx-highlight 语法高亮
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+
+"tagbar 类和函数视图
+nmap <F8> :TagbarToggle<CR>
