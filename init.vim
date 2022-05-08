@@ -3,17 +3,27 @@ call plug#begin()
 
 
 Plug 'neovim/nvim-lspconfig'
-Plug 'preservim/nerdtree'	"文件栏
-Plug 'jiangmiao/auto-pairs'	"括号匹配
-Plug 'vim-airline/vim-airline'	"底部状态栏
-Plug 'preservim/nerdcommenter'	"代码注释
+Plug 'preservim/nerdtree'	                      "文件栏
+Plug 'jiangmiao/auto-pairs'	                    "括号匹配
+Plug 'vim-airline/vim-airline'	                "底部状态栏
+Plug 'preservim/nerdcommenter'	                "代码注释
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
-Plug 'jackguo380/vim-lsp-cxx-highlight' "语法高亮
-Plug 'preservim/tagbar'   "类和函数视图
+Plug 'jackguo380/vim-lsp-cxx-highlight'         "语法高亮
+Plug 'preservim/tagbar'                         "类和函数视图
+Plug 'luochen1990/rainbow'                      "彩色括号匹配
+Plug 'ryanoasis/vim-devicons'                   "icon小图标 (乱码未解决)
+Plug 'terryma/vim-expand-region'                "K,J快速选择区域
+Plug 'voldikss/vim-translator'                  "翻译
+
+
+
+"markdown支持
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 
 "For vsnip users.
 " Plug 'hrsh7th/cmp-vsnip'
@@ -307,3 +317,25 @@ let g:cpp_class_decl_highlight = 1
 
 "tagbar 类和函数视图
 nmap <F8> :TagbarToggle<CR>
+
+"luochen1990/rainbow 彩色括号匹配
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+
+"terryma/vim-expand-region K,J快速选择区域
+map K <Plug>(expand_region_expand)
+map J <Plug>(expand_region_shrink)
+
+
+
+" voldikss/vim-translator 翻译
+"在cmdline显示翻译
+nmap <silent> <Leader>t <Plug>Translate
+vmap <silent> <Leader>t <Plug>TranslateV
+" 在窗口中显示翻译
+nmap <silent> <Leader>w <Plug>TranslateW
+vmap <silent> <Leader>w <Plug>TranslateWV
+"用翻译替换原文
+nmap <silent> <Leader>r <Plug>TranslateR
+vmap <silent> <Leader>r <Plug>TranslateRV
+"翻译剪切板中的文字
+nmap <silent> <Leader>x <Plug>TranslateX
