@@ -11,10 +11,10 @@
 #### 1.依赖安装
 
 ```shell
-sudo apt-get install python3-dev python3-pip pip clangd ccls universal-ctags
+sudo apt-get install python3-dev python3-pip pip clangd ccls universal-ctags snap
 sudo add-apt-repository ppa:neovim-ppa/stable
 sudo apt-get update
-sudo apt-get install neovim
+sudo snap install --beta nvim --classic
 ```
 
 #### 2.安装vim-plug
