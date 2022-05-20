@@ -12,9 +12,9 @@
 
 ```shell
 sudo apt-get install python3-dev python3-pip pip clangd ccls universal-ctags snap
-sudo add-apt-repository ppa:neovim-ppa/stable
+sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt-get update
-sudo snap install --beta nvim --classic
+sudo apt-get install neovim
 ```
 
 #### 2.安装vim-plug
