@@ -220,7 +220,34 @@ set autowrite
 """"""""""""""""""""""""""""""""""
 
 "nerdtree
-nnoremap <C-n> :NERDTreeMirror<CR>:NERDTreeFocus<CR>
+"nnoremap <C-n> :NERDTreeMirror<CR>:NERDTreeFocus<CR>
+" 定义一个智能切换 NERDTree（带 Mirror 同步）的函数
+function! SmartToggleNERDTree()
+    " 1. 如果当前光标已经在 NERDTree 窗口内，直接关闭它
+    if &filetype == 'nerdtree'
+        NERDTreeClose
+    else
+        " 2. 尝试将光标聚焦到当前标签页已有的 NERDTree
+        let l:old_winnr = winnr()
+        silent! NERDTreeFocus
+        " 3. 如果当前标签页原本没有 NERDTree 窗口（即聚焦前后窗口号没变）
+        if l:old_winnr == winnr()
+            " 先尝试从其他标签页镜像同步一个过来
+            silent! NERDTreeMirror
+            " 如果其他标签页也没有（Mirror 失败，当前文件类型依然不是 nerdtree），则直接新建一个
+            if &filetype != 'nerdtree'
+                NERDTree
+            else
+                " 如果 Mirror 成功了，再把光标聚焦过去
+                NERDTreeFocus
+            endif
+        endif
+    endif
+endfunction
+
+" 使用你熟悉的 nnoremap 绑定快捷键
+nnoremap <silent> <C-n> :call SmartToggleNERDTree()<CR>
+
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
